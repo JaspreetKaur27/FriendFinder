@@ -57,11 +57,9 @@ $("#submit").on("click", (e) => {
     }
 });
 
-function findfriend()
+function findfriend(scores)
 {
     $.get('/api/friends', (friends) => {
-        console.log($.get());
-
         var count = 0;
 
         for(var i = 0; i < friends.length; i++)
@@ -73,7 +71,7 @@ function findfriend()
         if(count === friends.length)
         {
             $("#friendname").text(frienddetail.name);
-            $("#friendimg").text(frienddetail.photo);
+            $("#friendimg").attr("src",frienddetail.image);
             $("#outmodal").modal("toggle");
         }
     });
@@ -96,7 +94,7 @@ function totalDifference(user, friend)
         {
             frienddetail.difference = diff;
             frienddetail.name = friend.name;
-            frienddetail.photo = friend.photo;
+            frienddetail.image = friend.photo;
         }
         else
         {
